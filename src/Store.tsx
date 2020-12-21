@@ -1,15 +1,5 @@
 import React from 'react';
-
-//[AMN] Typescript defining an interface as a 'contract'.
-interface IState {
-    episodes: [],
-    favourites: []
-}
-
-interface IAction {
-    type: string,
-    payload: any
-}
+import {IState, IAction} from './interfaces';
 
 //[AMN] React defining the State whose structure is the interface defined above.
 const initialState: IState = {
@@ -26,6 +16,10 @@ function reducer(state: IState, action: IAction): IState {
     switch (action.type) {
         case 'FETCH_DATA':
             return { ...state, episodes: action.payload}
+        case 'ADD_FAV':
+            return {...state, favourites: [...state.favourites, action.payload]}
+        case 'REMOVE_FAV':
+            return {...state, favourites: action.payload}
         default:
             return state
     }
