@@ -28,7 +28,7 @@ function reducer(state: IState, action: IAction): IState {
 //[AMN] StoreProvider has a prop = initialState that is going to be passed to the 
 // components consumers descendants from Provider. Each time the initialState chenges
 // the descendants components will be rendered. 
-export function StoreProvider(props: any): JSX.Element {
+export function StoreProvider({children}: JSX.ElementChildrenAttribute): JSX.Element {
     const [state, dispatch] = React.useReducer(reducer, initialState)
-    return <Store.Provider value={{state, dispatch}}>{props.children}</Store.Provider>
+    return <Store.Provider value={{state, dispatch}}>{children}</Store.Provider>
 }
